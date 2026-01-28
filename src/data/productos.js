@@ -1,0 +1,68 @@
+export const productos = [
+  {
+    id: 1,
+    categoria: "Postres",
+    nombre: "Chocobomba",
+    precio: 6000,
+  },
+  {
+    id: 2,
+    categoria: "Postres",
+    nombre: "Lemonberry",
+    precio: 6000,
+  },
+  {
+    id: 3,
+    categoria: "Postres",
+    nombre: "Tiramisú",
+    precio: 6000,
+  },
+  {
+    id: 4,
+    categoria: "Postres",
+    nombre: "Mantecol",
+    precio: 6000,
+  },
+  {
+    id: 5,
+    categoria: "Chipá congelado",
+    nombre: "Clásico",
+    precio: 4500,
+    porDocena: true,
+  },
+  {
+    id: 6,
+    categoria: "Chipá congelado",
+    nombre: "Verdeo",
+    precio: 5000,
+    porDocena: true,
+  },
+  {
+    id: 7,
+    categoria: "Chipá congelado",
+    nombre: "Queso Azul",
+    precio: 5000,
+    porDocena: true,
+  },
+  {
+    id: 8,
+    categoria: "Chipá congelado",
+    nombre: "Salame",
+    precio: 5000,
+    porDocena: true,
+  },
+  {
+    id: 9,
+    categoria: "Chipá congelado",
+    nombre: "Jamón",
+    precio: 5000,
+    porDocena: true,
+  },
+  {
+    id: 10,
+    categoria: "Chipá congelado",
+    nombre: "Morrón",
+    precio: 5000,
+    porDocena: true,
+  },
+];
