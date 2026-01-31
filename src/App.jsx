@@ -92,13 +92,9 @@ function App() {
     <div style={appBackground}>
       <div style={container}>
 
-        {/* HEADER CON LOGO */}
+        {/* HEADER */}
         <div style={header}>
-          <img
-            src="/logo-catalana-v2.png"
-            alt="Catalana"
-            style={logo}
-          />
+          <img src="/logo-catalana-v2.png" alt="Catalana" style={logo} />
         </div>
 
         {/* CHIPÁ */}
@@ -107,15 +103,25 @@ function App() {
 
           {chipas.map((p) => (
             <div key={p.id} style={card}>
-              <div>
-                <strong>{p.nombre}</strong>
-                <p style={price}>Docena: ${p.precio}</p>
-              </div>
+              {p.imagen && (
+                <img
+                  src={p.imagen}
+                  alt={p.nombre}
+                  style={productImage}
+                />
+              )}
 
-              <div>
-                <button style={btn} onClick={() => restarChipa(p.id)}>−</button>
-                <span style={qty}>{cantidades[p.id] || 0}</span>
-                <button style={btn} onClick={() => sumarChipa(p.id)}>+</button>
+              <div style={row}>
+                <div>
+                  <strong>{p.nombre}</strong>
+                  <p style={price}>Docena: ${p.precio}</p>
+                </div>
+
+                <div>
+                  <button style={btn} onClick={() => restarChipa(p.id)}>−</button>
+                  <span style={qty}>{cantidades[p.id] || 0}</span>
+                  <button style={btn} onClick={() => sumarChipa(p.id)}>+</button>
+                </div>
               </div>
             </div>
           ))}
@@ -135,15 +141,25 @@ function App() {
 
           {postres.map((p) => (
             <div key={p.id} style={card}>
-              <div>
-                <strong>{p.nombre}</strong>
-                <p style={price}>${p.precio}</p>
-              </div>
+              {p.imagen && (
+                <img
+                  src={p.imagen}
+                  alt={p.nombre}
+                  style={productImage}
+                />
+              )}
 
-              <div>
-                <button style={btn} onClick={() => restarPostre(p.id)}>−</button>
-                <span style={qty}>{cantidades[p.id] || 0}</span>
-                <button style={btn} onClick={() => sumarPostre(p.id)}>+</button>
+              <div style={row}>
+                <div>
+                  <strong>{p.nombre}</strong>
+                  <p style={price}>${p.precio}</p>
+                </div>
+
+                <div>
+                  <button style={btn} onClick={() => restarPostre(p.id)}>−</button>
+                  <span style={qty}>{cantidades[p.id] || 0}</span>
+                  <button style={btn} onClick={() => sumarPostre(p.id)}>+</button>
+                </div>
               </div>
             </div>
           ))}
@@ -171,7 +187,6 @@ function App() {
         {/* PAGO */}
         <section>
           <h2 style={sectionTitle}>Forma de pago</h2>
-
           <label>
             <input
               type="radio"
@@ -191,16 +206,6 @@ function App() {
             />{" "}
             Transferencia
           </label>
-
-          {pago === "Transferencia" && (
-            <div style={infoBox}>
-              <p><strong>Alias:</strong> catalana.mc</p>
-              <p><strong>Titular:</strong> Luis Marcelo Benítez</p>
-              <p style={small}>
-                No te olvides de enviar el comprobante por WhatsApp
-              </p>
-            </div>
-          )}
         </section>
 
         <hr style={divider} />
@@ -208,7 +213,6 @@ function App() {
         {/* RESUMEN */}
         <section>
           <h2 style={sectionTitle}>Resumen</h2>
-
           <div style={summaryBox}>
             {productos.some((p) => cantidades[p.id] > 0) ? (
               <>
@@ -219,7 +223,6 @@ function App() {
                     </p>
                   ) : null
                 )}
-
                 <hr style={{ margin: "12px 0" }} />
                 <p>Envío: ${envio}</p>
                 <p style={totalStyle}>Total: ${total}</p>
@@ -259,17 +262,13 @@ const header = {
   marginBottom: "32px",
 };
 
-const logo = {
-  width: "160px",
-  maxWidth: "80%",
-};
+const logo = { width: "160px" };
 
 const container = {
   maxWidth: "480px",
   margin: "auto",
   padding: "0 16px 110px",
   fontFamily: "system-ui, sans-serif",
-  color: "#111",
 };
 
 const sectionTitle = {
@@ -280,14 +279,25 @@ const sectionTitle = {
 };
 
 const card = {
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
   backgroundColor: "#fff",
   padding: "16px",
   borderRadius: "14px",
   marginBottom: "12px",
   boxShadow: "0 4px 10px rgba(0,0,0,0.06)",
+};
+
+const row = {
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+};
+
+const productImage = {
+  width: "100%",
+  height: "180px",
+  objectFit: "cover",
+  borderRadius: "12px",
+  marginBottom: "12px",
 };
 
 const price = { fontSize: "14px", color: "#555" };
@@ -304,26 +314,15 @@ const input = {
 };
 
 const warning = {
-  color: "#ffffff",
+  color: "#ffe9b3",
   fontSize: "14px",
-  marginTop: "8px",
-  fontWeight: "500"
+  marginTop: "6px",
 };
-
-const infoBox = {
-  backgroundColor: "#eef6f6",
-  padding: "14px",
-  borderRadius: "10px",
-  marginTop: "10px",
-};
-
-const small = { fontSize: "13px", color: "#555" };
 
 const summaryBox = {
   backgroundColor: "#fff",
   borderRadius: "14px",
   padding: "16px",
-  boxShadow: "0 4px 10px rgba(0,0,0,0.06)",
 };
 
 const totalStyle = {
@@ -353,10 +352,16 @@ const btnWhats = {
   borderRadius: "16px",
   fontSize: "16px",
   fontWeight: "600",
-  boxShadow: "0 6px 16px rgba(0,0,0,0.25)",
 };
 
 export default App;
+
+
+
+
+
+
+
 
 
 

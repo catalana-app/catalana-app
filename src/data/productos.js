@@ -4,24 +4,28 @@ export const productos = [
     categoria: "Postres",
     nombre: "Chocobomba",
     precio: 6000,
+    imagen: "/productos/postre-chocobomba.jpg",
   },
   {
     id: 2,
     categoria: "Postres",
     nombre: "Lemonberry",
     precio: 6000,
+    imagen: "/productos/postre-lemonberry.jpg",
   },
   {
     id: 3,
     categoria: "Postres",
     nombre: "Tiramisú",
     precio: 6000,
+    imagen: "/productos/postre-tiramisu.jpg",
   },
   {
     id: 4,
     categoria: "Postres",
     nombre: "Mantecol",
     precio: 6000,
+    imagen: "/productos/postre-mantecol.jpg",
   },
   {
     id: 5,
@@ -29,6 +33,7 @@ export const productos = [
     nombre: "Clásico",
     precio: 4500,
     porDocena: true,
+    imagen: "/productos/chipa-clasico.jpg",
   },
   {
     id: 6,
@@ -36,6 +41,7 @@ export const productos = [
     nombre: "Verdeo",
     precio: 5000,
     porDocena: true,
+    imagen: "/productos/chipa-verdeo.jpg",
   },
   {
     id: 7,
@@ -43,6 +49,7 @@ export const productos = [
     nombre: "Queso Azul",
     precio: 5000,
     porDocena: true,
+    imagen: "/productos/chipa-queso-azul.jpg",
   },
   {
     id: 8,
@@ -50,6 +57,7 @@ export const productos = [
     nombre: "Salame",
     precio: 5000,
     porDocena: true,
+    imagen: "/productos/chipa-salame.jpg",
   },
   {
     id: 9,
@@ -57,6 +65,7 @@ export const productos = [
     nombre: "Jamón",
     precio: 5000,
     porDocena: true,
+    imagen: "/productos/chipa-jamon.jpg",
   },
   {
     id: 10,
@@ -64,5 +73,6 @@ export const productos = [
     nombre: "Morrón",
     precio: 5000,
     porDocena: true,
+    imagen: "/productos/chipa-morron.jpg",
   },
 ];
