@@ -104,11 +104,7 @@ function App() {
           {chipas.map((p) => (
             <div key={p.id} style={card}>
               {p.imagen && (
-                <img
-                  src={p.imagen}
-                  alt={p.nombre}
-                  style={productImage}
-                />
+                <img src={p.imagen} alt={p.nombre} style={productImage} />
               )}
 
               <div style={row}>
@@ -142,11 +138,7 @@ function App() {
           {postres.map((p) => (
             <div key={p.id} style={card}>
               {p.imagen && (
-                <img
-                  src={p.imagen}
-                  alt={p.nombre}
-                  style={productImage}
-                />
+                <img src={p.imagen} alt={p.nombre} style={productImage} />
               )}
 
               <div style={row}>
@@ -187,6 +179,7 @@ function App() {
         {/* PAGO */}
         <section>
           <h2 style={sectionTitle}>Forma de pago</h2>
+
           <label>
             <input
               type="radio"
@@ -206,6 +199,24 @@ function App() {
             />{" "}
             Transferencia
           </label>
+
+          {pago === "Transferencia" && (
+            <div
+              style={{
+                marginTop: "12px",
+                fontSize: "14px",
+                backgroundColor: "#f4f4f4",
+                padding: "12px",
+                borderRadius: "10px",
+              }}
+            >
+              <p><strong>Alias:</strong> catalana.mc</p>
+              <p><strong>Titular:</strong> Luis Marcelo Benitez</p>
+              <p style={{ marginTop: "8px", fontWeight: "600" }}>
+                ⚠️ No te olvides de mandar el comprobante por WhatsApp
+              </p>
+            </div>
+          )}
         </section>
 
         <hr style={divider} />
@@ -355,6 +366,7 @@ const btnWhats = {
 };
 
 export default App;
+
 
 
 
