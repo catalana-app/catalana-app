@@ -30,8 +30,20 @@ function App() {
     }));
   };
 
+  const sumarEmpanadas = (id) => {
+  setCantidades((prev) => ({ ...prev, [id]: (prev[id] || 0) + 12 }));
+};
+
+const restarEmpanadas = (id) => {
+  setCantidades((prev) => ({
+    ...prev,
+    [id]: Math.max((prev[id] || 0) - 12, 0),
+  }));
+};
+
   const chipas = productos.filter((p) => p.categoria === "Chipá congelado");
   const postres = productos.filter((p) => p.categoria === "Postres");
+  const empanadas = productos.filter((p) => p.categoria === "Empanadas Congeladas");
 
   const totalChipas = chipas.reduce(
     (acc, p) => acc + (cantidades[p.id] || 0),
@@ -43,25 +55,77 @@ function App() {
     0
   );
 
-  // ===== ENVÍO =====
-  let envio = 0;
-  if (totalChipas === 12 && totalPostres === 0) envio = 500;
+// ===== ENVÍO =====
+let envio = 0;
+
+// Totales
+const totalEmpanadas = empanadas.reduce(
+  (acc, p) => acc + (cantidades[p.id] || 0),
+  0
+);
+
+// ==================
+// PRIORIDAD: EMPANADAS
+// ==================
+if (totalEmpanadas > 0) {
+  if (totalEmpanadas === 12 && totalChipas === 0 && totalPostres === 0) {
+    envio = 500;
+  } else {
+    envio = 0;
+  }
+}
+
+// ==================
+// SI NO HAY EMPANADAS → CHIPÁ / POSTRES
+// ==================
+else {
+  // POSTRES
+  if (totalPostres === 1 && totalChipas === 0) {
+    envio = 500;
+  } else if (totalPostres >= 2) {
+    envio = 0;
+  }
+
+  // CHIPÁ
+  else if (totalChipas === 12 && totalPostres === 0) {
+    envio = 500;
+  } else {
+    envio = 0;
+  }
+}
+
 
   // ===== TOTAL =====
-  const totalProductos = productos.reduce((acc, p) => {
-    const cantidad = cantidades[p.id] || 0;
-    if (p.categoria === "Chipá congelado") {
-      return acc + (p.precio / 12) * cantidad;
-    }
-    return acc + cantidad * p.precio;
-  }, 0);
+const totalProductos = productos.reduce((acc, p) => {
+  const cantidad = cantidades[p.id] || 0;
+
+  // CHIPÁ (precio por docena, cantidad en unidades)
+  if (p.categoria === "Chipá congelado") {
+    return acc + (p.precio / 12) * cantidad;
+  }
+
+  // EMPANADAS (precio por docena, cantidad en unidades)
+  if (p.categoria === "Empanadas Congeladas") {
+    return acc + (cantidad / 12) * p.precio;
+  }
+
+  // POSTRES (precio unitario)
+  return acc + cantidad * p.precio;
+}, 0);
 
   const total = totalProductos + envio;
 
   // ===== VALIDACIÓN =====
-  const pedidoValido =
-    (totalChipas === 0 && totalPostres >= 1) ||
-    (totalChipas >= 12 && totalChipas % 6 === 0);
+const pedidoValido =
+  // EMPANADAS (mínimo 12 y solo múltiplos de 12)
+  (totalEmpanadas >= 12 && totalEmpanadas % 12 === 0)
+
+  // CHIPÁ (mínimo 12, se suma de 6 en 6)
+  || (totalChipas >= 12)
+
+  // POSTRES
+  || (totalPostres >= 1);
+
 
   const chipaIncompleto =
     totalChipas > 0 && (totalChipas < 12 || totalChipas % 6 !== 0);
@@ -109,7 +173,8 @@ function App() {
 
               <div style={row}>
                 <div>
-                  <strong>{p.nombre}</strong>
+<strong style={{ color: "#111" }}>{p.nombre}</strong>
+
                   <p style={price}>Docena: ${p.precio}</p>
                 </div>
 
@@ -131,6 +196,40 @@ function App() {
 
         <hr style={divider} />
 
+<section>
+  <h2 style={sectionTitle}>Empanadas Congeladas</h2>
+
+  {empanadas.map((p) => (
+    <div key={p.id} style={card}>
+      {p.imagen && (
+        <img src={p.imagen} alt={p.nombre} style={productImage} />
+      )}
+
+      <div style={row}>
+        <div>
+<strong style={{ color: "#111" }}>{p.nombre}</strong>
+
+          <p style={price}>Docena: ${p.precio}</p>
+        </div>
+
+        <div>
+          <button style={btn} onClick={() => restarEmpanadas(p.id)}>−</button>
+          <span style={qty}>
+  {cantidades[p.id] || 0} u
+</span>
+          <button style={btn} onClick={() => sumarEmpanadas(p.id)}>+</button>
+
+          <p style={{ fontSize: "12px", color: "#777", marginTop: "4px" }}>
+  {((cantidades[p.id] || 0) / 12) || 0} docena/s
+</p>
+        </div>
+      </div>
+    </div>
+  ))}
+</section>
+
+        <hr style={divider} />
+
         {/* POSTRES */}
         <section>
           <h2 style={sectionTitle}>Postres</h2>
@@ -143,7 +242,8 @@ function App() {
 
               <div style={row}>
                 <div>
-                  <strong>{p.nombre}</strong>
+<strong style={{ color: "#111" }}>{p.nombre}</strong>
+
                   <p style={price}>${p.precio}</p>
                 </div>
 
@@ -311,7 +411,7 @@ const productImage = {
   marginBottom: "12px",
 };
 
-const price = { fontSize: "14px", color: "#555" };
+const price = { fontSize: "14px", color: "#333" };
 const btn = { padding: "6px 14px", fontSize: "18px" };
 const qty = { margin: "0 12px", fontSize: "20px", fontWeight: "600" };
 
@@ -366,6 +466,49 @@ const btnWhats = {
 };
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
