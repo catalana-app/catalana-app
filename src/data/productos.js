@@ -23,9 +23,9 @@ export const productos = [
   {
     id: 4,
     categoria: "Postres",
-    nombre: "Mantecol",
+    nombre: "Pavlova",
     precio: 6000,
-    imagen: "/productos/postre-mantecol.jpg",
+    imagen: "/productos/postre-pavlova.jpg",
   },
   {
     id: 5,
