@@ -9,7 +9,7 @@ export const productos = [
   {
     id: 2,
     categoria: "Postres",
-    nombre: "Lemonberry",
+    nombre: "Chocobrownie",
     precio: 6000,
     imagen: "/productos/postre-lemonberry.jpg",
   },
