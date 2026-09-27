@@ -3,28 +3,28 @@ export const productos = [
     id: 1,
     categoria: "Postres",
     nombre: "Chocobomba",
-    precio: 7000,
+    precio: 6000,
     imagen: "/productos/postre-chocobomba.jpg",
   },
   {
     id: 2,
     categoria: "Postres",
-    nombre: "Chocobrownie",
-    precio: 7000,
-    imagen: "/productos/postre-lemonberry.jpg",
+    nombre: "Pistacho",
+    precio: 6000,
+    imagen: "/productos/postre-pistacho.jpg",
   },
   {
     id: 3,
     categoria: "Postres",
     nombre: "Tiramisú",
-    precio: 7000,
+    precio: 6000,
     imagen: "/productos/postre-tiramisu.jpg",
   },
   {
     id: 4,
     categoria: "Postres",
     nombre: "Pavlova",
-    precio: 7000,
+    precio: 6000,
     imagen: "/productos/postre-pavlova.jpg",
   },
   {
@@ -67,19 +67,11 @@ export const productos = [
     porDocena: true,
     imagen: "/productos/chipa-jamon.jpg",
   },
-  {
+   {
     id: 10,
-    categoria: "Chipá congelado",
-    nombre: "Morrón",
-    precio: 7000,
-    porDocena: true,
-    imagen: "/productos/chipa-morron.jpg",
+    categoria: "Postres",
+    nombre: "Cheesecake",
+    precio: 6000,
+    imagen: "/productos/postre-cheesecake.jpg",
   },
-  {
-  id: 11,
-  categoria: "Empanadas Congeladas",
-  nombre: "Empanadas de Carne",
-  precio: 14000, // precio por docena
-  imagen: "/productos/empanada-carne.jpg",
-}
 ];

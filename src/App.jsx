@@ -69,7 +69,7 @@ const totalEmpanadas = empanadas.reduce(
 // ==================
 if (totalEmpanadas > 0) {
   if (totalEmpanadas === 12 && totalChipas === 0 && totalPostres === 0) {
-    envio = 500;
+    envio = 1000;
   } else {
     envio = 0;
   }
@@ -81,14 +81,14 @@ if (totalEmpanadas > 0) {
 else {
   // POSTRES
   if (totalPostres === 1 && totalChipas === 0) {
-    envio = 500;
+    envio = 1000;
   } else if (totalPostres >= 2) {
     envio = 0;
   }
 
   // CHIPÁ
   else if (totalChipas === 12 && totalPostres === 0) {
-    envio = 500;
+    envio = 1000;
   } else {
     envio = 0;
   }
@@ -193,40 +193,6 @@ const pedidoValido =
             </p>
           )}
         </section>
-
-        <hr style={divider} />
-
-<section>
-  <h2 style={sectionTitle}>Empanadas Congeladas</h2>
-
-  {empanadas.map((p) => (
-    <div key={p.id} style={card}>
-      {p.imagen && (
-        <img src={p.imagen} alt={p.nombre} style={productImage} />
-      )}
-
-      <div style={row}>
-        <div>
-<strong style={{ color: "#111" }}>{p.nombre}</strong>
-
-          <p style={price}>Docena: ${p.precio}</p>
-        </div>
-
-        <div>
-          <button style={btn} onClick={() => restarEmpanadas(p.id)}>−</button>
-          <span style={qty}>
-  {cantidades[p.id] || 0} u
-</span>
-          <button style={btn} onClick={() => sumarEmpanadas(p.id)}>+</button>
-
-          <p style={{ fontSize: "12px", color: "#777", marginTop: "4px" }}>
-  {((cantidades[p.id] || 0) / 12) || 0} docena/s
-</p>
-        </div>
-      </div>
-    </div>
-  ))}
-</section>
 
         <hr style={divider} />
 
